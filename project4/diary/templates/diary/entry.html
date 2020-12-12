@@ -1,0 +1,26 @@
+{% extends 'diary/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title%}
+Diary
+{% endblock  %}
+
+
+{% block body %}
+<!-- this part is displayed -->
+<h1>{{entry.title}}</h1>
+<p>{{entry.content}}</p>
+<a href="">edit</a>
+<a href="{% url 'index' %}">back</a>
+
+
+<!-- this part should be in a modal -->
+<div class="col-4">
+  <form action="{% url 'show_entry' entry.id %}" method="POST">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <button type="submit" class="btn btn-block btn-primary">update</button>
+  </form>
+</div>
+
+{% endblock  %}

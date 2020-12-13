@@ -21,10 +21,8 @@ def index(request):
     context = {'entries': entries, 'form': form}
     return render(request, 'diary/index.html', context)
 
-# display individual entries
-#del events
 
-
+# edit and delete event
 def show_entry(request, id):
     entry = Entry.objects.get(pk=id)
 
@@ -44,18 +42,3 @@ def show_entry(request, id):
 
     context = {"form": form, "entry": entry}
     return render(request, 'diary/entry.html', context)
-
-
-# edit entry
-
-
-# def edit_entry(request, id):
-#     entry = Entry.objects.get(pk=id)
-
-#     form_data = EntryForm(request.POST, instance=entry)
-#     if form_data.is_valid():  # django
-#         form_data.save()
-#         return HttpResponseRedirect(reverse("show_entry", args=(entry.id,)))
-
-#     context = {"form": EntryForm(instance=entry), "entry": entry}
-#     return render(request, "diary/entry.html", context)

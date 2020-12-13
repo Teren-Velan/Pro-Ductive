@@ -1,5 +1,6 @@
 {% extends 'diary/base.html' %}
 {% load crispy_forms_tags %}
+
 <!-- page title -->
 {% block title%}
 Diary
@@ -7,15 +8,12 @@ Diary
 
 <!-- page start -->
 {% block body %}
-<div class="col-4">
-  <form action="{% url 'index' %}" method="POST">
-    {% csrf_token %}
-    {{ form | crispy }}
-    <button type="submit" class="btn btn-block btn-primary">Add Category</button>
-  </form>
-</div>
+<!-- click this to open modal -->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  New Entry
+</button>
 
-<a href="#">Add new entry</a>
 
 {% for entry in entries %}
 <div>
@@ -28,5 +26,26 @@ Diary
 <hr>
 </div>
 {%endfor%}
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create New Entry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <h1>Dear Diary</h1>
+      <form action="{% url 'index' %}" method="POST">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-block btn-primary">Add Entry</button>
+      </form>
+
+    </div>
+  </div>
+</div>
 
 {% endblock  %}

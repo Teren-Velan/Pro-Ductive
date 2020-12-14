@@ -1,0 +1,46 @@
+{% extends 'expensetracker/base.html' %}
+{% load crispy_forms_tags %}
+
+<!-- the whole display of entries will be placed in a tabel format -->
+
+{%block body%}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Add Expenses
+</button>
+
+<div>
+
+  {% for entry in entries %}
+  <div>
+    <p>Time: {{entry.notedate}}</p>
+    <h5>Title: {{entry.description}}</h5>
+    <h5>Cost: {{entry.cost}}</h5>
+    <!-- <p>Content:{{entry.content}}</p> -->
+    <a href="{% url 'show_entry' entry.id %}">Show</a><a href="{% url 'show_entry' entry.id %}?del=true">
+      delete</a>
+  </div>
+  <hr>
+</div>
+{%endfor%}
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create New Expense Entry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <h1>Add Expenses</h1>
+      <form action="{% url 'index' %}" method="POST">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-block btn-primary">Add</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+{%endblock%}

@@ -7,25 +7,39 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Add Expenses
 </button>
-
-<div>
-
-  {% for entry in entries %}
-  <div>
-    <p>Time: {{entry.notedate}}</p>
-    <h5>Title: {{entry.description}}</h5>
-    <h5>Cost: {{entry.cost}}</h5>
-    <!-- <p>Content:{{entry.content}}</p> -->
-    <a href="{% url 'show_entry' entry.id %}">Show</a><a href="{% url 'show_entry' entry.id %}?del=true">
-      delete</a>
-  </div>
-  <hr>
-</div>
-{%endfor%}
-</div>
+<button><a href="daterange">View By Date</a></button>
 
 
-<!-- Modal -->
+<table class="table table-light">
+  <thead>
+    <tr>
+      <th scope="col">S/N</th>
+      <th scope="col">Expense Description</th>
+      <th scope="col">Expense Cost</th>
+      <th scope="col">Expense Date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for entry in entries%}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{entry.description}}</td>
+      <td>{{entry.cost}}</td>
+      <td>{{entry.date}}</td>
+      <td scope="col">
+
+        <a href="{% url 'edit_entry' entry.id %}?del=true">Delete</a>
+      </td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+
+
+
+
+<!-- Add Expense Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

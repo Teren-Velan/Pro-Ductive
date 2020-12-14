@@ -1,0 +1,43 @@
+{% extends 'expensetracker/base.html' %}
+<!-- http://127.0.0.1:8000/expensetracker/dashboard-->
+{%block body%}
+<h1>Dashboard</h1>
+<h3>overview</h3>
+
+<h3>{{today}}</h3>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h4 class="card-title">Today's Expenses</h4>
+    <h5>{{tc.cost__sum}}</h5>
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h4 class="card-title">Yesterday's Expenses</h4>
+    <h5>{{yc.cost__sum}}</h5>
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h4 class="card-title">Last 7 Days Expenses</h4>
+    <h5>{{sc.cost__sum}}</h5>
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h4 class="card-title">Last 30 Days Expenses</h4>
+    <h5>{{thc.cost__sum}}</h5>
+  </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h4 class="card-title">Last 1 Year's Expenses</h4>
+    <h5>{{yc.cost__sum}}</h5>
+  </div>
+</div>
+
+{%endblock%}

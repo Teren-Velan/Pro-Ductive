@@ -28,7 +28,7 @@ def show_entry(request, id):
 
     if request.GET.get("del") == "true":
         entry.delete()  # deletes on cat
-        return HttpResponseRedirect(reverse("index"))
+        return HttpResponseRedirect(reverse("diary:index"))
 
     elif request.method == "POST":
         form_data = EntryForm(request.POST, instance=entry)  # django
@@ -37,7 +37,7 @@ def show_entry(request, id):
             # particular page
             # redirect to the page with the id
             #  the "," at the end is part of the code
-            return HttpResponseRedirect(reverse("show_entry", args=(entry.id,)))
+            return HttpResponseRedirect(reverse("diary:show_entry", args=(entry.id,)))
     form = EntryForm(instance=entry)
 
     context = {"form": form, "entry": entry}

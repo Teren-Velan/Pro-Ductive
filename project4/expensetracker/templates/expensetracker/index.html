@@ -29,7 +29,7 @@
       <td>{{entry.date}}</td>
       <td scope="col">
 
-        <a href="{% url 'edit_entry' entry.id %}?del=true">Delete</a>
+        <a href="{% url 'expensetracker:edit_entry' entry.id %}?del=true">Delete</a>
       </td>
     </tr>
     {%endfor%}
@@ -48,7 +48,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <h1>Add Expenses</h1>
-      <form action="{% url 'index' %}" method="POST">
+      <form action="{% url 'expensetracker:index' %}" method="POST">
         {% csrf_token %}
         {{ form | crispy }}
         <button type="submit" class="btn btn-block btn-primary">Add</button>

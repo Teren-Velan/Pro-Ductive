@@ -1,0 +1,78 @@
+ body{
+   display: flex;
+    box-sizing: border-box;
+ }
+
+.main-sidebar-cont{
+  background-color:rgb(255, 154, 154);
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  display: flex;
+  align-items:center;
+  /* justify-content: space-around; */
+  flex-direction: column;
+}
+.branding{
+  margin-top: 40px;
+}
+
+.branding h2{
+  font-size: 37px;
+  font-family: 'Space Mono', monospace;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 6px;
+  font-weight: 700;
+  width: 100%;
+}
+
+.branding h2 a{
+  text-decoration: none;
+  color: rgb(53, 53, 53);
+}
+
+.sidebar-nav{
+  display: flex;
+  align-items: flex-start;
+  /* justify-content: ; */
+  height: 5%;
+  margin-top:30px ;
+  width: 106%;
+  flex-direction: column;
+  list-style: none;
+}
+
+.nav-item{
+  /* margin: 20px 0; */
+  width: 100%;
+  margin-left:-15px ;
+  text-align: center;
+  justify-content: center;
+  align-items: flex-start;
+  /* margin-right: 200px; */
+}
+
+.nav-item:hover{
+  color: black;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.nav-item a{
+  text-decoration: none;
+  list-style: none;
+  color: white;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 25px;
+  width: 100%;
+
+  text-align: center;
+}
+
+.nav-item a:hover{
+  color: black;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+} 
+

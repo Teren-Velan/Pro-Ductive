@@ -4,7 +4,7 @@
 <!-- page title -->
 {% block title%}
 Diary
-{% endblock  %}
+{% endblock %}
 
 <!-- page start -->
 {% block body %}
@@ -20,7 +20,7 @@ Diary
   <p>Time: {{entry.date_posted}}</p>
   <h5>Title: {{entry.title}}</h5>
   <!-- <p>Content:{{entry.content}}</p> -->
-  <a href="{% url 'show_entry' entry.id %}">Show</a><a href="{% url 'show_entry' entry.id %}?del=true">
+  <a href="{% url 'diary:show_entry' entry.id %}">Show</a><a href="{% url 'diary:show_entry' entry.id %}?del=true">
     delete</a>
 </div>
 <hr>
@@ -38,7 +38,7 @@ Diary
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <h1>Dear Diary</h1>
-      <form action="{% url 'index' %}" method="POST">
+      <form action="{% url 'diary:index' %}" method="POST">
         {% csrf_token %}
         {{ form | crispy }}
         <button type="submit" class="btn btn-block btn-primary">Add Entry</button>
@@ -48,4 +48,4 @@ Diary
   </div>
 </div>
 
-{% endblock  %}
+{% endblock %}

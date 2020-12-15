@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'diary',
     'expensetracker',
+    "todo",
+    'cal',
+    'dashboard',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -1,0 +1,70 @@
+{% extends 'todo/base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{%block body%}
+
+
+<h1>To-do List</h1>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#todoModal">
+  New Entry
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="todoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create New Entry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <h1>Dear Diary</h1>
+      <form action="{% url 'todo:index' %}" method="POST">
+        {% csrf_token %}
+        {{ form.item}}
+        <button type="submit" class="btn btn-block btn-primary">Add Entry</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">S/N</th>
+      <th scope="col">Task</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for entry in entries%}
+    {% if entry.completed %}
+    <tr class="table-success">
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{entry.item}}</td>
+      <td> <a href="{% url 'todo:uncross' entry.id %}">Done</a> </td>
+      <td><a href="{% url 'todo:delete' entry.id %}">Remove</a></td>
+    </tr>
+    {%else%}
+    <tr class="table-danger">
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{entry.item}}</td>
+      <td><a href="{% url 'todo:cross' entry.id %}">Ongoing</a></td>
+      <td><a href="{% url 'todo:delete' entry.id %}">Remove</a></td>
+    </tr>
+    {%endif%}
+
+    {%endfor%}
+  </tbody>
+</table>
+
+
+
+
+
+{% endblock %}

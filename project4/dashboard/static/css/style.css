@@ -3,10 +3,23 @@
     box-sizing: border-box;
  }
 
+ .curr-date{
+   width: 100%;
+   font-family: 'Space Mono', monospace;
+   text-decoration: underline;
+ }
+ .curr-date span{
+   font-weight: 700;
+ }
+
+.today{
+  margin-left: 65px;
+  margin-top: 20px;
+}
 .main-sidebar-cont{
-  background-color:rgb(255, 154, 154);
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
+  background-color:rgb(168, 203, 255);
+  /* border-top-right-radius: 30px; */
+  /* border-bottom-right-radius: 30px; */
   display: flex;
   align-items:center;
   /* justify-content: space-around; */
@@ -17,14 +30,18 @@
 }
 
 .branding h2{
-  font-size: 37px;
+  font-size: 35px;
   font-family: 'Space Mono', monospace;
   border: 1px solid white;
   border-radius: 10px;
   padding: 6px;
   font-weight: 700;
   width: 100%;
+
+
 }
+
+
 
 .branding h2 a{
   text-decoration: none;
@@ -36,7 +53,7 @@
   align-items: flex-start;
   /* justify-content: ; */
   height: 5%;
-  margin-top:30px ;
+  margin-top:15px ;
   width: 106%;
   flex-direction: column;
   list-style: none;
@@ -64,9 +81,9 @@
   color: white;
   font-family: 'Space Mono', monospace;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 21px;
   width: 100%;
-
+  padding:0 30px;
   text-align: center;
 }
 
@@ -74,5 +91,60 @@
   color: black;
   font-family: 'Space Mono', monospace;
   font-weight: 700;
+  transition: ease-in 0.3s;
 } 
 
+
+/* content here */
+.content-cont{
+  /* background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(255, 174, 174)); */
+  background-color: rgb(245, 245, 245);
+}
+
+
+.exp-cont{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 30px;
+  text-align: center;
+  /* box-shadow: 3px 3px 5px 6px #ccc; */
+}
+
+.card{
+  box-shadow: 3px 3px 2px 2px #ccc;
+  font-family: 'Space Mono', monospace;
+  border-radius: 15px;
+  background-color: rgb(243, 246, 255);
+  text-align: center;
+}
+
+.card-body h5{
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.exp-list{
+  width: 90%;
+  height: 250px;
+  overflow-y:scroll;
+  margin: 40px auto;
+  box-shadow: 3px 3px 2px 2px #ccc;
+  border-radius: 15px;
+  
+}
+
+.exp-list::-webkit-scrollbar {
+  display: none;
+}
+
+.exp-list th{
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.exp-list td{
+  font-family: 'Space Mono', monospace;
+  font-size: 15px;
+}

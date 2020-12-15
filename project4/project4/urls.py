@@ -22,5 +22,5 @@ urlpatterns = [
     path('expensetracker/', include('expensetracker.urls')),
     path('todo/', include('todo.urls')),
     path('', include('cal.urls')),
-    path('dashboard/', include('dashboard.urls'))
+    path('', include('dashboard.urls'))
 ]

@@ -1,9 +1,64 @@
 {% extends 'dashboard/base.html' %}
 
 {%block body%}
-<h1>hello</h1>
-<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt veritatis illum dolores! Labore, culpa possimus.
-  Esse aperiam ad aliquam voluptas facere architecto beatae velit omnis obcaecati vero quam labore debitis aspernatur
-  molestias voluptates, tempore molestiae nemo consequatur nam. Sunt, eligendi mollitia. Odio doloribus dolores cumque
-  beatae voluptate eligendi reprehenderit optio!</p>
+<div class="card today" style="width: 28rem;">
+  <div class="card-body curr-date">
+    <h2> <span>Today:</span> {{today}}</h2>
+  </div>
+</div>
+
+<div class="exp-cont">
+  <div class="card" style="width: 22rem;">
+    <div class="card-body">
+      <h4 class="card-title">Today's Expenses</h4>
+      {% if tc.cost_sum != None %}
+      <h5>$0</h5>
+      {%elif tc.cost_sum == None %}
+      <h5>${{tc.cost__sum}}</h5>
+      {%endif%}
+    </div>
+  </div>
+
+  <div class="card" style="width: 22rem;">
+    <div class="card-body">
+      <h4 class="card-title">Yesterday's Expenses</h4>
+      <h5>${{yc.cost__sum}}</h5>
+    </div>
+  </div>
+
+  <div class="card" style="width: 22rem;">
+    <div class="card-body">
+      <h4 class="card-title">Last 7 Days Expenses</h4>
+      <h5>${{sc.cost__sum}}</h5>
+    </div>
+  </div>
+</div>
+
+<div class="exp-list">
+  <table class="table table-bordered table-light">
+    <thead>
+      <th class="text-center" colspan="4" scope="col">Recent Expenditures</th>
+      <tr>
+        <th class="text-center" style="width: 5%" scope="col">S/N</th>
+        <th class="text-center" style="width: 10%" scope="col">Expense Description</th>
+        <th class="text-center" style="width: 5%" scope="col">Expense Cost</th>
+        <th class="text-center" style="width: 5%" scope="col">Expense Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for entry in entries%}
+      <tr>
+        <td class="text-center" scope="row">{{forloop.counter}}</th>
+        <td class="text-center">{{entry.description}}</td>
+        <td class="text-center">{{entry.cost}}</td>
+        <td class="text-center">{{entry.date}}</td>
+
+        </td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+
+
 {%endblock%}

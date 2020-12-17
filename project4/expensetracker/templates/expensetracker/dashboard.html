@@ -1,46 +1,116 @@
 {% extends 'expensetracker/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
 <!-- http://127.0.0.1:8000/expensetracker/dashboard-->
 {%block body%}
-<h1>Dashboard</h1>
-<h3>overview</h3>
+<div class="expense-header">
+  <h1 style="font-family: 'Space Mono', monospace; margin: 20px 10px;font-weight: 700;">Expense Tracker</h1>
 
-<h3>{{today}}</h3>
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h4 class="card-title">Today's Expenses</h4>
-    <h5>{{tc.cost__sum}}</h5>
-  </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h4 class="card-title">Yesterday's Expenses</h4>
-    <h5>{{yc.cost__sum}}</h5>
-  </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h4 class="card-title">Last 7 Days Expenses</h4>
-    <h5>{{sc.cost__sum}}</h5>
-  </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h4 class="card-title">Last 30 Days Expenses</h4>
-    <h5>{{thc.cost__sum}}</h5>
-  </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h4 class="card-title">Last 1 Year's Expenses</h4>
-    <h5>{{yrc.cost__sum}}</h5>
-  </div>
+  <a class="date-range" href="daterange">View By Date</a>
 </div>
 
 
-<button> <a href="all">View all Entries</a></button>
-<button> <a href='daterange'>View by date range</a></button>
+
+
+<div class="data-display">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h4 class="card-title">Today's Expenses</h4>
+      <h5>${{tc.cost__sum}}</h5>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h4 class="card-title">Yesterday's Expenses</h4>
+      <h5>${{yc.cost__sum}}</h5>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h4 class="card-title">Last 7 Days Expenses</h4>
+      <h5>${{sc.cost__sum}}</h5>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h4 class="card-title">Last 30 Days Expenses</h4>
+      <h5>${{thc.cost__sum}}</h5>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h4 class="card-title">Last 1 Year's Expenses</h4>
+      <h5>${{yrc.cost__sum}}</h5>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <button> <a href="all">View all Entries</a></button>
+<button> <a href='daterange'>View by date range</a></button> -->
+
+
+
+<div>
+  <div class="add-expense" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Expenses
+  </div>
+
+</div>
+
+
+<table class="table table-bordered table-light">
+  <thead>
+    <tr>
+      <th class="text-center" scope="col">S/N</th>
+      <th class="text-center" scope="col">Expense Description</th>
+      <th class="text-center" scope="col">Expense Cost($)</th>
+      <th class="text-center" scope="col">Expense Date</th>
+      <th class="text-center" scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for entry in entries%}
+    <tr>
+      <th class="text-center" scope="row">{{forloop.counter}}</th>
+      <td class="text-center">{{entry.description}}</td>
+      <td class="text-center">{{entry.cost}}</td>
+      <td class="text-center">{{entry.date}}</td>
+      <td class="text-center" scope="col">
+
+        <a href="{% url 'expensetracker:edit_entry' entry.id %}?del=true">Delete</a>
+      </td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+
+
+
+
+<!-- Add Expense Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create New Expense Entry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <h1>Add Expenses</h1>
+      <form action="{% url 'expensetracker:dashboard' %}" method="POST">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-block btn-primary">Add</button>
+      </form>
+
+    </div>
+  </div>
+</div>
 {%endblock%}

@@ -1,6 +1,8 @@
  body{
    display: flex;
     box-sizing: border-box;
+    /* background-color: rgb(190, 91, 91); */
+    
  }
 
  .curr-date{
@@ -12,17 +14,21 @@
    font-weight: 700;
  }
 
-.today{
-  margin-left: 65px;
-  margin-top: 20px;
-}
+ .content-cont{
+  background-color:#e4f6ff;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  
+   
+ }
+
 .main-sidebar-cont{
-  background-color:rgb(168, 203, 255);
-  /* border-top-right-radius: 30px; */
-  /* border-bottom-right-radius: 30px; */
+  background-color:#0892d0;
+  /* height: 50%;!important */
   display: flex;
   align-items:center;
-  /* justify-content: space-around; */
+  
   flex-direction: column;
 }
 .branding{
@@ -40,8 +46,6 @@
 
 
 }
-
-
 
 .branding h2 a{
   text-decoration: none;
@@ -94,57 +98,495 @@
   transition: ease-in 0.3s;
 } 
 
+/* dashboard content */
 
-/* content here */
-.content-cont{
-  /* background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(255, 174, 174)); */
-  background-color: rgb(245, 245, 245);
-}
-
-
-.exp-cont{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 30px;
-  text-align: center;
-  /* box-shadow: 3px 3px 5px 6px #ccc; */
-}
-
-.card{
-  box-shadow: 3px 3px 2px 2px #ccc;
+.main-grid{
   font-family: 'Space Mono', monospace;
-  border-radius: 15px;
-  background-color: rgb(243, 246, 255);
-  text-align: center;
-}
-
-.card-body h5{
-  font-weight: 700;
-  font-size: 30px;
-}
-
-.exp-list{
+  margin:60px auto 0 auto;
+  max-height: 80%;
   width: 90%;
-  height: 250px;
-  overflow-y:scroll;
-  margin: 40px auto;
-  box-shadow: 3px 3px 2px 2px #ccc;
-  border-radius: 15px;
+  display: grid;
+  grid-gap:10px;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-areas:        
+  "one four"
+  "one five"
+  "two five"
+  "two five"
+  "three six"
+  "three six"
+  "three six";
   
 }
 
-.exp-list::-webkit-scrollbar {
-  display: none;
+.item{
+  border:1px solid rgb(114, 114, 114);  
 }
 
-.exp-list th{
-  font-family: 'Space Mono', monospace;
+.one{
+  grid-area: one;
+  grid-column: 1 / 2;
+  background-color:#e4f6ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px rgb(82, 82, 82);
+ 
+}
+
+.fa-door-open{
+  margin: 0 10px;
+}
+
+.two{
+  grid-area: two;
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+  align-items: center;
+  /* background-color: #D93D3D; */
+  box-shadow: 4px 4px rgb(82, 82, 82);
+}
+
+.diary-icon{
+  margin: 20px auto;
+}
+
+.diary-icon h3{
   font-weight: 700;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.two h4{
+
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.diary-icon a{
+  text-decoration: none;
+  color: #00a1b3;
+  
+}
+
+
+.three{
+  grid-area: three;
+  grid-column: 1;
+  /* background-color: #D9BDAD; */
+  box-shadow: 4px 4px rgb(82, 82, 82);
+}
+
+.four{
+    grid-area: four;
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* background-color:#A65B4B ;  */
+    box-shadow: 4px 4px rgb(82, 82, 82);
+}
+.fa-calendar-day{
+  margin: 20px 20px;
+  
+}
+
+.five{
+  min-height: 100px;
+  max-height:360px ;
+  grid-area: five;
+  grid-column: 2;
+  overflow: auto;
+  overflow-y: scroll;
+  /* background-color: #732F29; */
+  box-shadow: 4px 4px rgb(82, 82, 82);
+}
+
+.five .table{
+  padding: 10px;
+}
+
+.fa-check-square{
+  margin: 0 10px;
+}
+
+.six{
+  grid-area: six;
+  grid-column: 2;
+  /* background-color:#A6785D ;  */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 4px 4px rgb(82, 82, 82);
+}
+
+.six h3{
+  font-weight: 700;
+  text-align: center;
+  font-size: 30px;
+}
+
+.cal-icon a{
+  color: #00a1b3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center ;
+  text-align: center;
+  text-decoration: none;
+ 
+}
+
+.fa-calendar-alt a{
+  text-decoration: none;
+  color: #00a1b3;
+}
+
+
+.exp-header{
+  display: flex;
+  justify-content: center ;
+  background-color: white;
+}
+
+.exp-header h4{
+  margin:10px 0;
+  border: 1px solid rgb(68, 68, 68) ;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+.exp-header a{
+  text-decoration: none;
+  color: rgb(70, 70, 70);
+  font-weight: 700;
+}
+
+.exp-header a:hover{
+  color: black  ;
+  
+}
+
+.card:hover {
+  transform: translate3D(0,-1px,0) scale(1.001 );
+}
+
+.card-body{
+  text-align: center;
+}
+
+.exp-head{
   font-size: 17px;
 }
 
-.exp-list td{
+.exp-bod{
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.five::-webkit-scrollbar {
+  display: none;
+}
+
+.todo-header{
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+}
+.todo-header h4{
+  color: black;
+  width: 200px;
+  margin-top: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.todo-btn{
+  width: 236px;
+  border-radius: 10px;
+  background-color: #F2E5BD;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+
+
+
+.welcome-msg{
+  /* border: 1px solid black;  */
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.table td a{
+  text-decoration: none;
+  color: rgb(109, 109, 109);
+ 
+}
+
+.table td a:hover{
+  text-decoration: none;
+  color: black;
+ 
+}
+
+
+.fa-journal-whills:hover {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.5s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+
+.fa-calendar-alt:hover {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.5s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.fa-journal-whills:hover {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.5s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+
+
+/* for diary */
+
+.new-entry{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 40px;
+  margin-top: 10px;
+  border-radius: 10px;
   font-family: 'Space Mono', monospace;
-  font-size: 15px;
+  color: #333;
+    box-shadow: -3px 3px orange, -2px 2px orange, -1px 1px orange;
+    border: 1px solid orange;
+    text-align: center;
+    
+}
+
+.new-entry-btn{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.diary-content{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  
+}
+
+.entry{
+  margin: 5px 5px;
+  font-family: 'Space Mono', monospace;
+  /* box-shadow: 4px 4px rgb(82, 82, 82);  */
+  border: 1px solid rgb(209, 209, 209);
+
+}
+
+.show-btn , .del-btn{
+  border: 1px solid rgb(139, 138, 138);
+  text-decoration: none;
+  margin: 3px 5px;
+  padding: 4px;
+  border-radius: 10px;
+  color: black;
+  text-align: center;
+  color: #333;
+    box-shadow: -3px 3px orange, -2px 2px orange, -1px 1px orange;
+    border: 1px solid orange;
+    text-align: center;
+    
+}
+
+.show-btn:hover{
+  background-color: #c2ffb7;
+  color: black;
+  border: 1px solid black;
+}
+
+.del-btn:hover{
+  background-color: #ff97ac;
+  color: black;
+  border: 1px solid black;
+}
+
+.btn-group{
+  margin-top:5px ;
+}
+
+/* individual diary entry */
+
+.entry-number{
+  font-family: 'Space Mono', monospace;
+  /* border: 1px solid blue; */
+  width: 30%;
+  margin-top: 33px;
+  margin-left: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.indiv-entry{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 100px auto;
+  border: 1px solid rgb(201, 201, 201);
+  width: 1000px;
+  /* height: 1000px; */
+  font-family: 'Space Mono', monospace;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.indiv-entry h1{
+  font-weight: 700;
+}
+
+.indiv-entry-btn{
+  margin-left: 35px;
+}
+
+.indiv-edit , .indiv-back{
+  border: 1px solid rgb(139, 138, 138);
+  text-decoration: none;
+  margin: 3px 5px;
+  padding: 4px;
+  border-radius: 10px;
+  color: black;
+  text-align: center;
+  color: #333;
+    box-shadow: -3px 3px orange, -2px 2px orange, -1px 1px orange;
+    border: 1px solid orange;
+    text-align: center;
+    
+}
+
+.indiv-edit:hover{
+  color: black;
+  animation: shake 0.5s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+.indiv-back:hover{
+  color: black;
+  animation: shake 0.5s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+
+
+/* expense tracker  */
+
+.expense-header{
+  display:flex;
+  flex-direction: column;
+}
+
+.data-display{
+  display: flex;
+  justify-content: space-around;
+ 
+}
+
+.data-display h4{
+  color: rgb(73, 73, 73);
+}
+
+.data-display h5{
+  font-weight: 700;
+}
+
+.table-data-display{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+
+.date-range{
+  text-decoration: none;
+  color: #333;
+  box-shadow: -3px 3px orange, -2px 2px orange, -1px 1px orange;
+  border: 1px solid orange;
+  text-align: center;
+  width: 20%;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  margin-left: 10px;
+  font-family: 'Space Mono', monospace;
+}
+
+.add-expense{
+  text-decoration: none;
+  color: #333;
+  box-shadow: -3px 3px orange, -2px 2px orange, -1px 1px orange;
+  border: 1px solid orange;
+  text-align: center;
+  width: 20%;
+  border-radius: 10px;
+  
+  font-family: 'Space Mono', monospace;
+  margin:20px 10px;
+}
+
+/* EXPENSE DATE RANGE PAGE */
+
+.sel-date-range{
+  text-decoration: none;
+  color: #333;
+  box-shadow: -3px 3px orange, -2px 2px orange, -1px 1px orange;
+  border: 1px solid orange;
+  text-align: center;
+  width: 20%;
+  border-radius: 10px;
+  
+  font-family: 'Space Mono', monospace;
+  margin:20px 7px;
+}
+
+.date-range-display{
+  font-family: 'Space Mono', monospace;
+}
+
+.date-disp{
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
 }

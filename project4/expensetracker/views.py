@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 # display and add expenses
 
 
-def index(request):
+def dashboard(request):
     if request.method == "POST":
         form_data = ExpenseForm(request.POST)
         if form_data.is_valid():
@@ -24,48 +24,6 @@ def index(request):
     entries = Expenses.objects.order_by('-notedate')
     form = ExpenseForm()
     context = {'entries': entries, "form": form}
-    return render(request, 'expensetracker/index.html', context)
-
-
-def edit_entry(request, id):
-    entry = Expenses.objects.get(pk=id)
-
-    if request.GET.get("del") == "true":
-        entry.delete()
-        return HttpResponseRedirect(reverse("index"))
-    elif request.method == "POST":
-        form_data = ExpenseForm(request.POST, instance=entry)
-        if form_data.is_valid():
-            form_data.save()
-            return HttpResponseRedirect(reverse("index", args=(entry.id,)))
-
-    form_instance = ExpenseForm(instance=entry)
-
-    context = {'form_instance': form_instance, "entry": entry}
-    return render(request, 'expensetracker/index.html', context)
-
-
-def date_range(request):
-    if request.method == "POST":
-        fd = request.POST['fromdate']
-        td = request.POST['todate']
-
-        expense = Expenses.objects.filter(
-            Q(date__gte=fd) & Q(date__lte=td)).values('date').annotate(totaldaily=Sum('cost'))
-
-        expense_count = Expenses.objects.filter(
-            Q(date__gte=fd) & Q(date__lte=td)).count()
-
-        expense_total = Expenses.objects.filter(
-            Q(date__gte=fd) & Q(date__lte=td)).values('date').annotate(totaldaily=Sum('cost')).aggregate(Sum('totaldaily'))
-
-        context = {'fd': fd, "td": td, "expense": expense,
-                   "expense_count": expense_count, "expense_total": expense_total}
-        return render(request, "expensetracker/range.html", context)
-    return render(request, "expensetracker/range.html")
-
-
-def dashboard(request):
     today = datetime.now().date()
 
     yesterday = today - timedelta(1)
@@ -86,6 +44,43 @@ def dashboard(request):
         date__gte=year, date__lte=today).aggregate(Sum('cost'))
 
     context = {'today': today, 'tc': tc,
-               'yc': yc, "sc": sc, "thc": thc, 'yrc': yrc, }
+               'yc': yc, "sc": sc, "thc": thc, 'yrc': yrc, 'form': form, "entries": entries}
 
     return render(request, "expensetracker/dashboard.html", context)
+
+
+def edit_entry(request, id):
+    entry = Expenses.objects.get(pk=id)
+    if request.GET.get("del") == "true":
+        entry.delete()
+        return HttpResponseRedirect(reverse("expensetracker:dashboard"))
+    elif request.method == "POST":
+        form_data = ExpenseForm(request.POST, instance=entry)
+        if form_data.is_valid():
+            form_data.save()
+            return HttpResponseRedirect(reverse("expensetracker:dashboard", args=(entry.id,)))
+
+    form_instance = ExpenseForm(instance=entry)
+
+    context = {'form_instance': form_instance, "entry": entry}
+    return render(request, 'expensetracker/dashboard.html', context)
+
+
+def date_range(request):
+    if request.method == "POST":
+        fd = request.POST['fromdate']
+        td = request.POST['todate']
+
+        expense = Expenses.objects.filter(
+            Q(date__gte=fd) & Q(date__lte=td)).values('date').annotate(totaldaily=Sum('cost'))
+
+        expense_count = Expenses.objects.filter(
+            Q(date__gte=fd) & Q(date__lte=td)).count()
+
+        expense_total = Expenses.objects.filter(
+            Q(date__gte=fd) & Q(date__lte=td)).values('date').annotate(totaldaily=Sum('cost')).aggregate(Sum('totaldaily'))
+
+        context = {'fd': fd, "td": td, "expense": expense,
+                   "expense_count": expense_count, "expense_total": expense_total}
+        return render(request, "expensetracker/range.html", context)
+    return render(request, "expensetracker/range.html")

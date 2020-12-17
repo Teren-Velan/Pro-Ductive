@@ -14,20 +14,16 @@ def index(request):
         form_data = ListForm(request.POST)
         if form_data.is_valid():
             form_data.save()
-            messages.success(request, "successfully added Entry.")
-        else:
-            messages.error(request, "Entry Submission was unsuccesful.")
 
     entries = List.objects.all
     form = ListForm()
     context = {'entries': entries, 'form': form}
-    return render(request, 'todo/index.html', context)
+    return render(request, 'dashboard/index.html', context)
 
 
 def delete(request, id):
     entry = List.objects.get(pk=id)
     entry.delete()
-    messages.success(request, ('item has been deleted'))
     return redirect('todo:index')
 
 

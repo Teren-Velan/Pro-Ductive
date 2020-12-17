@@ -8,10 +8,21 @@ Diary
 
 {% block body %}
 <!-- this part is displayed -->
-<h1>{{entry.title}}</h1>
-<p>{{entry.content}}</p>
-<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">edit</a>
-<a href="{% url 'diary:index' %}">back</a>
+<div>
+  <h1 class="entry-number">Entry Number: #{{entry.id}}</h1>
+  <div class="indiv-entry-btn">
+    <a class="indiv-edit" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</a>
+    <a class="indiv-back" href="{% url 'diary:index' %}">Back</a>
+  </div>
+</div>
+
+<div class="indiv-entry">
+  <h1> <span>Title:</span> {{entry.title}}</h1>
+  <p>{{entry.content}}</p>
+
+
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

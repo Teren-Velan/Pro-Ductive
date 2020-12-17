@@ -2,10 +2,12 @@
 
 <!-- http://127.0.0.1:8000/expensetracker/daterange -->
 {% block body%}
+<div>
+  <div type="button" class="sel-date-range" data-bs-toggle="modal" data-bs-target="#rangeModal">
+    Select Date Range
+  </div>
+</div>
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rangeModal">
-  Select Date Range
-</button>
 
 <div class="modal fade" id="rangeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -34,28 +36,36 @@
 
 
 
+<div class="date-range-display">
+  <h5>The dates selected is
+    <p> </p>
+    <p>from: <span class="date-disp">{{fd}}</span> </p>
+    <p>to: <span class="date-disp">{{td}}</span> </p>
+  </h5>
+</div>
 
-<h5>The dates selected is from {{fd}} to {{td}}</h5>
+<div class="table-data-display">
 
-<table class="table table-bordered table-light">
-  <thead>
-    <tr>
-      <th scope="col">S/N</th>
-      <th scope="col">Expense Date</th>
-      <th scope="col">Total Expense Cost</th>
-    </tr>
-  </thead>
-  <tbody>
-    {%for ex in expense%}
-    <tr>
-      <th scope="row">{{forloop.counter}}</th>
-      <td>{{ex.date}}</td>
-      <td>{{ex.totaldaily}}</td>
-    </tr>
-    {%endfor%}
-    <td class="table-success" colspan="2">Grand Total</td>
-    <td class="table-success" colspan="1">{{expense_total.totaldaily__sum}}</td>
-  </tbody>
-</table>
 
+  <table class="table table-bordered table-light">
+    <thead>
+      <tr>
+        <th class="text-center" scope="col">S/N</th>
+        <th class="text-center" scope="col">Expense Date</th>
+        <th class="text-center" scope="col">Total Expense Cost($)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for ex in expense%}
+      <tr>
+        <th class="text-center" scope="row">{{forloop.counter}}</th>
+        <td class="text-center">{{ex.date}}</td>
+        <td class="text-center">{{ex.totaldaily}}</td>
+      </tr>
+      {%endfor%}
+      <td class="table-success text-start" style="font-weight: 700;" colspan="2">Grand Total</td>
+      <td class="table-success text-center" style="font-weight: 700;" colspan="1">{{expense_total.totaldaily__sum}}</td>
+    </tbody>
+  </table>
+</div>
 {%endblock%}

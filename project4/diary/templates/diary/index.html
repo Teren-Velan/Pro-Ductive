@@ -10,23 +10,40 @@ Diary
 {% block body %}
 <!-- click this to open modal -->
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  New Entry
-</button>
-
-
-{% for entry in entries %}
-<div>
-  <p>Time: {{entry.date_posted}}</p>
-  <h5>Title: {{entry.title}}</h5>
-  <!-- <p>Content:{{entry.content}}</p> -->
-  <a href="{% url 'diary:show_entry' entry.id %}">Show</a><a href="{% url 'diary:show_entry' entry.id %}?del=true">
-    delete</a>
+<div class="new-entry-btn">
+  <div type="button" class="new-entry" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add New Entry
+  </div>
 </div>
-<hr>
-</div>
-{%endfor%}
 
+
+<div class="diary-content row row-cols-2">
+  {% for entry in entries %}
+
+  <div class="card entry" style="width: 22rem; height: 150px;">
+    <div class="card-body">
+      <h5 class="card-title">{{entry.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{entry.date_posted}}</h6>
+      <div class="btn-group">
+        <a class="show-btn" href="{% url 'diary:show_entry' entry.id %}">Show</a><a class="del-btn"
+          href="{% url 'diary:show_entry' entry.id %}?del=true">Delete</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- <div class="entry">
+    <p>Time: {{entry.date_posted}}</p>
+    <h5>Title: {{entry.title}}</h5>
+    <p>Content:{{entry.content}}</p>
+    <a href="{% url 'diary:show_entry' entry.id %}">Show</a><a href="{% url 'diary:show_entry' entry.id %}?del=true">
+      delete</a>
+  </div> -->
+
+
+
+  {%endfor%}
+</div>
 
 
 <!-- Modal -->

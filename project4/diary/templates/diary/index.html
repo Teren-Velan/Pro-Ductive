@@ -51,15 +51,19 @@ Diary
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create New Entry</h5>
+        <h5 class="modal-title text-center" id="exampleModalLabel">Create New Entry</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <h1>Dear Diary</h1>
-      <form action="{% url 'diary:index' %}" method="POST">
-        {% csrf_token %}
-        {{ form | crispy }}
-        <button type="submit" class="btn btn-block btn-primary">Add Entry</button>
-      </form>
+      <h1 class="dear-diary">Dear Diary</h1>
+      <div class="diary-form">
+        <form action="{% url 'diary:index' %}" method="POST">
+          {% csrf_token %}
+
+          {{ form | crispy }}
+          <button type="submit" class="btn btn-block btn-primary">Add Entry</button>
+        </form>
+      </div>
+
 
     </div>
   </div>

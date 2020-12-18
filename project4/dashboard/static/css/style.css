@@ -590,3 +590,72 @@
   font-family: 'Space Mono', monospace;
   font-weight: 700;
 }
+
+.dear-diary{
+  margin-left: 35px;
+}
+
+#exampleModal{
+  font-family: 'Space Mono', monospace;
+
+}
+
+#exampleModal h1{
+  text-align: center;
+}
+
+.diary-form{
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+  font-family: 'Space Mono', monospace;
+}
+
+.update-diary-form{
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+  width: 300%;
+  font-family: 'Space Mono', monospace;
+}
+.update-diary-form .btn{
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.diary-form .btn{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.exp-form{
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+  font-family: 'Space Mono', monospace;
+}
+
+.exp-form .btn{
+  width: 100%;
+  margin: 20px 0;
+}
+
+.range-form{
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+  font-family: 'Space Mono', monospace;
+}
+
+.range-form .btn{
+  width: 100%;
+  border: 1px solid black;
+  margin: 20px auto;
+}
+
+.cdr{
+  font-family: 'Space Mono', monospace;
+}

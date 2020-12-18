@@ -104,11 +104,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <h1>Add Expenses</h1>
-      <form action="{% url 'expensetracker:dashboard' %}" method="POST">
-        {% csrf_token %}
-        {{ form | crispy }}
-        <button type="submit" class="btn btn-block btn-primary">Add</button>
-      </form>
+      <div class="exp-form">
+        <form action="{% url 'expensetracker:dashboard' %}" method="POST">
+          {% csrf_token %}
+          {{ form | crispy }}
+          <button type="submit" class="btn btn-block btn-primary">Add</button>
+        </form>
+      </div>
+
 
     </div>
   </div>

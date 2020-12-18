@@ -13,23 +13,26 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Choose Date Range</h5>
+        <h5 class="modal-title cdr" id="exampleModalLabel">Choose Date Range</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="POST" action="">
-        {%csrf_token%}
-        <div class="form-group">
-          <label>Start Date</label>
-          <input class="form-control" type="date" id="fromdate" name="fromdate" required='true'>
-        </div>
-        <div class="form-group">
-          <label>End Date</label>
-          <input class="form-control" type="date" id="todate" name="todate" required='true'>
-        </div>
-        <div>
-          <button type="submit" name="submit">Submit</button>
-        </div>
-      </form>
+      <div class="range-form">
+        <form method="POST" action="">
+          {%csrf_token%}
+          <div class="form-group">
+            <label>Start Date</label>
+            <input class="form-control" type="date" id="fromdate" name="fromdate" required='true'>
+          </div>
+          <div class="form-group">
+            <label>End Date</label>
+            <input class="form-control" type="date" id="todate" name="todate" required='true'>
+          </div>
+          <div>
+            <button class="btn" type="submit" name="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+
     </div>
   </div>
 </div>

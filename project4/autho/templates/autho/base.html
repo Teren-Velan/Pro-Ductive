@@ -27,34 +27,8 @@
 
 <body>
 
-  <div class="container-fluid">
-    <div class="row ">
-      <div class=" main-sidebar-cont col-sm-2 min-vh-100">
-        {% block sidebar %}
-        <div class="branding">
-          <h2> <a href="/">Pro-Ductive</a> </h2>
-        </div>
-        <ul class="sidebar-nav">
-          <li class="nav-item"><a href="/diary">My Diary</a></li>
-        </ul>
-        <ul class="sidebar-nav">
-          <li class="nav-item"><a href="/expensetracker">Expense Tracker</a></li>
-        </ul>
-        <ul class="sidebar-nav">
-          <li class="nav-item"><a href="/calendar">Events Calender</a></li>
-        </ul>
-        <ul class="sidebar-nav">
-          <li style="background-color: white; border-radius: 10px;" class="nav-item ">
-            <a style="color: black;" class="logout" href="{% url 'autho:logout' %}">Logout</a>
-          </li>
-        </ul>
-        {% endblock %}
-
-      </div>
-      <div class="content-cont col-sm-10 ">{% block body %}
-        {% endblock %}</div>
-    </div>
-  </div>
+  {% block body %}
+  {% endblock %}
 
 
   <!-- JavaScript Bundle with Popper -->

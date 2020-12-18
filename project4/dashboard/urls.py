@@ -8,4 +8,5 @@ urlpatterns = [
     path('cross/<int:id>', views.cross, name='cross'),
     path('uncross/<int:id>', views.uncross, name='uncross'),
     path('<int:id>/', views.delete, name='delete'),
+    path('logout/', views.signout, name="logout")
 ]

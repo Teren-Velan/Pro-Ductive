@@ -7,9 +7,11 @@ from django.db.models import Q
 from django.db.models import Sum
 from datetime import datetime, timedelta
 from todo.forms import ListForm  # Create your views here.
+from django.contrib.auth import logout
 
 
 def index(request):
+    user = request.user
     today = datetime.now().date()
     now = datetime.now()
     dt_string = now.strftime("%H:%M:%S")
@@ -37,7 +39,7 @@ def index(request):
     todo_form = ListForm()
 
     context = {'today': today, 'tc': tc,
-               'yc': yc, "sc": sc, "thc": thc, 'yrc': yrc, "entries": entries, 'dt_string': dt_string, "todo_list": todo_list, 'todo_form': todo_form}
+               'yc': yc, "sc": sc, "thc": thc, 'yrc': yrc, "entries": entries, 'dt_string': dt_string, "todo_list": todo_list, 'todo_form': todo_form, 'user': user}
     return render(request, 'dashboard/index.html', context)
 
 
@@ -60,3 +62,8 @@ def uncross(request, id):
     item.completed = False
     item.save()
     return redirect('dashboard:index')
+
+
+def signout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('autho:signin'))

@@ -25,3 +25,6 @@ urlpatterns = [
     path('', include('dashboard.urls')),
     path('autho/', include('autho.urls')),
 ]
+
+
+urlpatterns += staticfiles_urlpatterns()
